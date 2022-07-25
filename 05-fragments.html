@@ -2,13 +2,29 @@
   <div id="root"></div>
   <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const element = (
-      <>
+    const elementWithDeclaredFragment = (
+      <React.Fragment>
         <span>Hello</span> <span>World</span>
+      </React.Fragment>
+    )
+    const elementWithImplicitFragment = (
+      <>
+        <span>, how are you?</span>
       </>
     )
-    ReactDOM.render(element, document.getElementById('root'))
+    const elementDivAllTogether = React.createElement(
+      'div',
+      {className: 'div-of-fragments'},
+      elementWithDeclaredFragment, elementWithImplicitFragment
+    )
+    const elementFragmentAllTogether = React.createElement(
+      React.Fragment,
+      {className: 'fragment-of-fragments'}, //but useless in span
+      elementWithDeclaredFragment, elementWithImplicitFragment
+    )
+    ReactDOM.render(elementDivAllTogether, document.getElementById('root'))
+    ReactDOM.render(elementFragmentAllTogether, document.getElementById('root'))
   </script>
 </body>
