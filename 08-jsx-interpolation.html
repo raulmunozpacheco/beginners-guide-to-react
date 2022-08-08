@@ -8,13 +8,14 @@
       return (
         <div>
           {`The text "${text}" has `}
-          {text.length ? <strong>{text.length}</strong> : 'No'}
+          {text.length ? <strong>{text.length}</strong> : 'no'}
           {' characters'}
         </div>
       )
     }
 
     const element = (
+      // Reminder: This is a Fragment indeed.
       <>
         <CharacterCount text="Hello World" />
         <CharacterCount text="" />
