@@ -6,6 +6,7 @@
   <script type="text/babel">
     // https://github.com/donavon/hook-flow
 
+    // See comments just after calling ReactDOM.render(...) 
     function Child() {
       console.log('%c    Child: render start', 'color: MediumSpringGreen')
 
@@ -119,6 +120,19 @@
       return element
     }
 
+    /*
+    To sum it up, call order is as follows:
+    1- Rendering, from the parent to its childs, but calling only on objects that actually changhed (must be rendered).
+    1.1- Callbacks while rendering - useState hooks, but only if they are needed (inline definition Vs. defined by function).
+    2- Clean-up effects - useEffect hooks, in the order below, but only after first renderization occurred.
+    3- Produce effects - useEffect hooks, in the order below.
+    4- Browser shows result.
+
+    Order or effects:
+      I. With no dependency array.
+      II. With empty dependency array.
+      III. With non-empty dependency array. 
+    */
     ReactDOM.render(<App />, document.getElementById('root'))
   </script>
 </body>

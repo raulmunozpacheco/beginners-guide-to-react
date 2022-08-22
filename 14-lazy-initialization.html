@@ -8,7 +8,7 @@
       const [name, setName] = React.useState(
         /*
         Notice the '() =>' added to pass a function as the initial value of useState().
-        This way the function is only called the first time, and then ignored.
+        This way the function is only called when is needed, not every time Greeting is rendered.
         */
         () => window.localStorage.getItem('name') || '',
       )

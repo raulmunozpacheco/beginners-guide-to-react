@@ -60,8 +60,13 @@
         VanillaTilt.init(tiltNode, vanillaTiltOptions)
 
         /*
-        This function is called every time our vamilla-tilt-related function
-        is updated. In this case, it deletes the function from Vanilla-tilt
+        This function is called prior to our vamilla-tilt-related object
+        is updated (re-rendered). To understand:
+        1- Object is first rendered -> useEffect(() => {...} is executed.
+        2- Object changes, is re-rendered -> First return () => {...} is executed,
+            and then useEffect(() => {...}.
+        
+        In this case, destroy() deletes the function from Vanilla-tilt
         and handlers created by it to avoid memory leaks.
         */
         return () => {
