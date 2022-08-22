@@ -2,20 +2,27 @@
   <div id="root"></div>
   <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     function UsernameForm() {
+      const inputRef = React.useRef()
+
       function handleSubmit(event) {
+        // Next line prevents auto-refreshing the page after submit action.
         event.preventDefault()
+        // Two good options to retrieve input value: 1) htmlFor from 'label' tag, 2) useRef linked to input DOM element
+        // 1) option
         const username = event.target.elements.usernameInput.value
-        alert(`You entered: ${username}`)
+        // 2) option
+        const username2 = inputRef.current.value
+        alert(`You entered: ${username2}`)
       }
 
       return (
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="usernameInput">Username:</label>
-            <input id="usernameInput" type="text" />
+            <input ref={inputRef} id="usernameInput" type="text" />
           </div>
           <button type="submit">Submit</button>
         </form>
