@@ -44,9 +44,11 @@
   </style>
   <script type="text/babel">
     function Tilt({children}) {
+      // Here the useRef Hook...
       const tiltRef = React.useRef()
 
       React.useEffect(() => {
+        //... and here the actual represented DOM object (<div>) by the Hook
         const tiltNode = tiltRef.current
         const vanillaTiltOptions = {
           max: 25,
@@ -54,13 +56,33 @@
           glare: true,
           'max-glare': 0.5,
         }
+        // .init("this", "withTheseOptions")
         VanillaTilt.init(tiltNode, vanillaTiltOptions)
+
+        /*
+        This function is called every time our vamilla-tilt-related function
+        is updated. In this case, it deletes the function from Vanilla-tilt
+        and handlers created by it to avoid memory leaks.
+        */
         return () => {
           tiltNode.vanillaTilt.destroy()
-        }
-      }, [])
+        } 
+      },
+      /*
+      Actually, useEffect variables do not change over the time,
+      so we do not need any dependecy array initially.
+      However, by giving an empty array, we say useEffect must run the init function only
+      only when the DOM object is mounted onto the page, and returned function must run
+      only when the DOM object in unmounted from the page.
+      */
+       [])
 
       return (
+        /*
+        With 'ref' we stablish the link between this DOM object (<div>)
+        and the React Hook 'useRef' as a manageable element.
+        We can refer to whatever mutable thing, not only DOM elements.
+        */
         <div ref={tiltRef} className="tilt-root">
           <div className="tilt-child">{children}</div>
         </div>
@@ -75,7 +97,7 @@
             <input
               type="checkbox"
               checked={showTilt}
-              onChange={e => setShowTilt(e.target.checked)}
+              onChange={event => setShowTilt(event.target.checked)}
             />{' '}
             show tilt
           </label>

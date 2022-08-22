@@ -5,8 +5,10 @@
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
     function Greeting() {
-      // Next state is defined by usin Local Storage (DevTool >> Application >> Local Storage)
-      // Its initial value is 'name' in the local storage, or nothing if 'name' does not exists yet.
+      /*
+      Next state is defined by usin Local Storage (DevTool >> Application >> Local Storage)
+      Its initial value is 'name' in the local storage, or nothing if 'name' does not exists yet.
+      */
       const [name, setName] = React.useState(
         window.localStorage.getItem('name') || '',
       )

@@ -10,6 +10,11 @@
       )
 
       React.useEffect(() => {
+        /*
+        Notice here the second argument of useEffect(): the "dependency" array.
+        It says for what hook the effect should take place.
+        I.e.: when 'name' changes, then apply the effect.
+        */
         window.localStorage.setItem('name', name)
       }, [name])
 

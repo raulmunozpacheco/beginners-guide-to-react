@@ -6,6 +6,10 @@
   <script type="text/babel">
     function Greeting() {
       const [name, setName] = React.useState(
+        /*
+        Notice the '() =>' added to pass a function as the initial value of useState().
+        This way the function is only called the first time, and then ignored.
+        */
         () => window.localStorage.getItem('name') || '',
       )
 

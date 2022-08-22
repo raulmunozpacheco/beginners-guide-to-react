@@ -8,12 +8,14 @@
 
     function tick() {
       const time = new Date().toLocaleTimeString()
-      // This way, 'root' and its childs are updated every second, and focus is lost when indise input
-      // const element = `<div><div>The time is :</div><input value=${time} /></div>`
-      // rootElement.innerHTML = element
+      /*
+      This way, 'root' and its childs are updated every second, and focus is lost when indise input
+      const element = `<div><div>The time is :</div><input value=${time} /></div>`
+      rootElement.innerHTML = element
       
-      // This way, with ReactDOM, only the inputs are updated every second (objects that actually change)
-      // and focus is kept inside inputs
+      This way, with ReactDOM, only the inputs are updated every second (objects that actually change)
+      and focus is kept inside inputs.
+      */
       const element = (
         <>
           <div>The time is:</div>
