@@ -21,6 +21,9 @@
         <div>
           <p>There have been {state.eventCount} events.</p>
           <p>
+            Buttom with inline onCLick function declaration:<br/>
+            <button onCLick={() => setState({eventCount: state.eventCount + 1})}>Click Me</button><br/>
+            Button with call to onClick function:<br/>
             <button onClick={handleClick}>Click Me</button>
           </p>
           <p>You typed: {state.username}</p>
